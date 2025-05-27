@@ -68,27 +68,21 @@
                 <div class="image-gallery" id="imageGallery">
                     <div class="image-item">
                         <img src="img/deco-mural-mirroir/IMG_20220530_174915_840.jpg" alt="">
-                        <div class="image-caption">Beautiful Landscape</div>
                     </div>
                     <div class="image-item">
                         <img src="img/paris-chantier/IMG_20220407_115251.jpg" alt="">
-                        <div class="image-caption">Mountain View</div>
                     </div>
                     <div class="image-item">
                         <img src="img/fontaineb-AS/WhatsApp Image 2024-06-18 à 16.39.19_a3c1c8d6.jpg" alt="">
-                        <div class="image-caption">Ocean Sunset</div>
                     </div>
                     <div class="image-item">
                         <img src="img/restau-paris/restau-paris1.jpg" alt="">
-                        <div class="image-caption">Forest Path</div>
                     </div>
                     <div class="image-item">
                         <img src="img/IMG_20220726_172400.jpg" alt="">
-                        <div class="image-caption">City Lights</div>
                     </div>
                     <div class="image-item">
                         <img src="https://picsum.photos/300/200?random=6" alt="Nature Photo 6">
-                        <div class="image-caption">Desert Dunes</div>
                     </div>
                 </div>
             </section>
@@ -175,51 +169,91 @@
             document.getElementById("checkbox").addEventListener("click", function () {
             document.getElementById("menuBox").classList.toggle("active");
             });
-            function setupImageZoom() {
-            const gallery = document.getElementById('imageGallery');
-            const images = gallery.querySelectorAll('img');
+            function setupFullscreenZoom() {
+            const overlay = document.getElementById('fullscreenOverlay');
+            const fullscreenImg = document.getElementById('fullscreenImage');
+            const closeBtn = document.getElementById('closeButton');
             
-            images.forEach((img, index) => {
-                // Add gallery-image class for styling
-                img.classList.add('gallery-image');
+            // Find all images and make them clickable
+            const images = document.querySelectorAll('realisations');
+            
+            images.forEach(img => {
+                // Skip the fullscreen image itself
+                if (img.id === 'fullscreenImage') return;
                 
-                // Create zoom button for each image
-                const zoomButton = document.createElement('button');
-                zoomButton.className = 'zoom-button';
-                zoomButton.textContent = '🔍 Zoom';
-                zoomButton.setAttribute('data-image-id', index);
+                // Add click event to each image
+                img.addEventListener('click', function() {
+                    openFullscreen(this.src, this.alt);
+                });
                 
-                // Add click event to button
-                zoomButton.addEventListener('click', () => toggleImageZoom(img, zoomButton));
+                // Add visual feedback
+                img.style.cursor = 'pointer';
                 
-                // Add click event to image itself
-                img.addEventListener('click', () => toggleImageZoom(img, zoomButton));
-                
-                // Insert button after image
-                img.parentNode.insertBefore(zoomButton, img.nextSibling);
+                // Optional: Add zoom button for each image
+                if (!img.parentNode.querySelector('.zoom-button')) {
+                    const zoomBtn = document.createElement('button');
+                    zoomBtn.className = 'zoom-button';
+                    zoomBtn.textContent = '🔍 Full Screen';
+                    zoomBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openFullscreen(img.src, img.alt);
                     });
-                }
-
-                function toggleImageZoom(image, button) {
-                    if (image.classList.contains('enlarged')) {
-                        image.classList.remove('enlarged');
-                        button.textContent = '🔍 Zoom';
+                    
+                    // Insert button after image
+                    if (img.nextSibling) {
+                        img.parentNode.insertBefore(zoomBtn, img.nextSibling);
                     } else {
-                        image.classList.add('enlarged');
-                        button.textContent = '🔍 Zoom Out';
+                        img.parentNode.appendChild(zoomBtn);
                     }
                 }
-
-                function resetAllImages() {
-                    const images = document.querySelectorAll('.gallery-image');
-                    const buttons = document.querySelectorAll('.zoom-button');
-                    
-                    images.forEach(img => img.classList.remove('enlarged'));
-                    buttons.forEach(btn => btn.textContent = '🔍 Zoom');
+            });
+            
+            // Close events
+            closeBtn.addEventListener('click', closeFullscreen);
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeFullscreen();
                 }
-
-                // Initialize when page loads
-                document.addEventListener('DOMContentLoaded', setupImageZoom);
+            });
+            
+            // ESC key to close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('show')) {
+                    closeFullscreen();
+                }
+            });
+        }
+        
+        function openFullscreen(imageSrc, imageAlt) {
+            const overlay = document.getElementById('fullscreenOverlay');
+            const fullscreenImg = document.getElementById('fullscreenImage');
+            
+            fullscreenImg.src = imageSrc;
+            fullscreenImg.alt = imageAlt;
+            
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                overlay.classList.add('show');
+            }, 10);
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeFullscreen() {
+            const overlay = document.getElementById('fullscreenOverlay');
+            
+            overlay.classList.remove('show');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+            
+            // Restore body scrolling
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', setupFullscreenZoom);
         </script>
     </body>
 </html>
