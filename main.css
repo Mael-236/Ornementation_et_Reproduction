@@ -225,7 +225,6 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     background: linear-gradient(135deg, #C5B358 0%, #9b8a3d 100%);
-    content: url('img/system-uicons--scale-extend-light.png');
     border: none;
     padding: 12px 20px;
     font-size: 16px;
