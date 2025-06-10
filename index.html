@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ornementation et Reproduction</title>
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <section id="accueil">
@@ -39,17 +39,21 @@
                 <div class="slider">
                     <button class="prev" onclick="prevSlide()">&#10094</button>
                     <div class="slide">
-                        <h1>Ornementation</h1>
-                        <div class="slide_content">    
-                            <p class="slide_txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic mollitia sapiente exercitationem dicta fuga fugit delectus eveniet iure, neque nisi dignissimos omnis deleniti culpa laboriosam!</p>
+                        <div class="slide_content">
+                            <div class="slide_txt">
+                                <h1>Ornementation</h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic mollitia sapiente exercitationem dicta fuga fugit delectus eveniet iure, neque nisi dignissimos omnis deleniti culpa laboriosam!</p>
+                            </div>
                             <img src="img/saint-mery/11démoulage3.jpg" alt="" class="slide_img">
                         </div> 
                     </div>
                     <div class="slide">
-                        <h1>Reproduction</h1>
                         <div class="slide_content">
                             <img src="img/saint-mery/6modelage en plastiline.JPG" alt="" class="slide_img">
-                            <p class="slide_txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic mollitia sapiente exercitationem dicta fuga fugit delectus eveniet iure, neque nisi dignissimos omnis deleniti culpa laboriosam!</p>
+                            <div class="slide_txt">
+                                <h1>Reproduction</h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic mollitia sapiente exercitationem dicta fuga fugit delectus eveniet iure, neque nisi dignissimos omnis deleniti culpa laboriosam!</p>
+                            </div>
                         </div>
                     </div>
                     <!-- <div class="slide">
@@ -65,29 +69,29 @@
             <div class="ligne"></div>
             <section id="realisations">
                 <div class="gallery" id="imageGallery">
-                    <div class="image-item">
+                    <div class="image-items">
                         <img src="img/deco-mural-mirroir/IMG_20220530_174915_840.jpg" alt="">
-                        <button class="zoom-btn"></button>
+                        <button class="extend-btn" href="img-index.html"><img src="system-uicons--scale-extend-light.png" alt="zoom-icon"></button>
                     </div>
-                    <div class="image-item">
+                    <div class="image-items">
                         <img src="img/paris-chantier/IMG_20220407_115251.jpg" alt="">
-                        <button class="zoom-btn"></button>
+                        <button class="extend-btn"><img src="system-uicons--scale-extend-light.png" alt="zoom-icon"></button>
                     </div>
-                    <div class="image-item">
+                    <div class="image-items">
                         <img src="img/fontaineb-AS/WhatsApp Image 2024-06-18 à 16.39.19_a3c1c8d6.jpg" alt="">
-                        <button class="zoom-btn"></button>
+                        <button class="extend-btn"><img src="system-uicons--scale-extend-light.png" alt="zoom-icon"></button>
                     </div>
-                    <div class="image-item">
+                    <div class="image-items">
                         <img src="img/restau-paris/restau-paris1.jpg" alt="">
-                        <button class="zoom-btn"></button>
+                        <button class="extend-btn"><img src="system-uicons--scale-extend-light.png" alt="zoom-icon"></button>
                     </div>
-                    <div class="image-item">
+                    <div class="image-items">
                         <img src="img/IMG_20220726_172400.jpg" alt="">
-                        <button class="zoom-btn"></button>
+                        <button class="extend-btn"><img src="system-uicons--scale-extend-light.png" alt="zoom-icon"></button>
                     </div>
-                    <div class="image-item">
-                        <img src="https://picsum.photos/400/300?random=6" alt="Réalisation 6">
-                        <button class="zoom-btn"></button>
+                    <div class="image-items">
+                        <img src="img/fontaineb-AS/WhatsApp Image 2024-06-18 à 16.39.18_bd04ce97.jpg" alt="Réalisation 6">
+                        <button class="extend-btn"><img src="system-uicons--scale-extend-light.png" alt="zoom-icon"></button>
                     </div>
                 </div>
             </section>
@@ -124,7 +128,7 @@
                 </div>
             </section>
             <div class="ligne"></div>
-            <section class="contact">
+            <section id="contact">
                 <h1 id="h1-contact">Contact</h1>
                 <div class="formulaire">
                     <form>

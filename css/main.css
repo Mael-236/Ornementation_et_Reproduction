@@ -118,12 +118,6 @@ img {
   display: none;
 }
 
-.slide h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .slide.displaySlide {
   display: block;
 }
@@ -161,176 +155,80 @@ img {
   margin-block: 100px;
 }
 
+
+
 .gallery img {
   width: 450px;
   height: 450px;
   object-fit: cover;
-  /* filter: drop-shadow(0px 0px 5px #C5B358); */
   border-radius: 10px;
   margin: 20px;
   cursor: pointer;
   transition: 100ms;
 }
 
-/*.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin: 20px 0;
-    max-width: 95vw;
-    margin-inline: auto;
-    margin-block: 100px;
-}*/
-
 .gallery img:hover {
   transform: scale(1.1);
   color: #C5B358;
 }
 
-.image-item {
-    position: relative;
-    text-align: center;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+.extend-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #C5B358 0%, #9b8a3d 100%);
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(197, 179, 88, 0.4);
+  z-index: 2;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
 }
 
-.gallery-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: all 0.4s ease;
-    cursor: pointer;
+.extend-btn img {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin-top: -20px;
+  margin-left: 16px;
 }
 
-/* Overlay pour l'effet d'assombrissement */
-.image-item::before {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 15px;
-    background: rgba(0, 0, 0, 0);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Bouton d'agrandissement */
-.zoom-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #C5B358 0%, #9b8a3d 100%);
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 25px;
-    cursor: pointer;
-    opacity: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(197, 179, 88, 0.4);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
+.image-items {
+  position: relative;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 /* Effet hover sur desktop */
 @media (hover: hover) {
-    .gallery img:hover {
-        box-shadow: 10px 12px 10px rgba(0, 0, 0, 0.6);
-    }
     
-    .image-item:hover .zoom-btn {
+    .gallery img:hover{
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6)
+    }
+
+    .image-items:hover .extend-btn {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1.05);
-    }
-    
-    .image-item:hover .gallery {
-        transform: scale(1.02);
     }
 }
 
 /* Effet click sur mobile */
 @media (hover: none) {
-    .image-item.active::before {
+    .image-items.active::before {
         box-shadow: 10px 12px 10px rgba(0, 0, 0, 0.6);
     }
     
-    .image-item.active .zoom-btn {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.05);
-    }
-    
-    .image-item.active .gallery-image {
+    .image-items.active .gallery-image {
         transform: scale(1.02);
     }
-}
-
-/* Full-screen overlay */
-.fullscreen-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.fullscreen-overlay.show {
-    display: flex;
-    opacity: 1;
-}
-
-.fullscreen-image {
-    max-width: 95vw;
-    max-height: 95vh;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 0 50px rgba(255,255,255,0.1);
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-}
-
-.fullscreen-overlay.show .fullscreen-image {
-    transform: scale(1);
-}
-
-/* Close button */
-.close-button {
-    position: absolute;
-    top: 20px; 
-    right: 30px;
-    color: white; 
-    font-size: 40px;
-    cursor: pointer; 
-    z-index: 1001;
-    background: rgba(255,255,255,0.1);
-    width: 50px; 
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.close-button:hover {
-    background: rgba(255,255,255,0.2);
-    transform: scale(1.1);
 }
 
 /* infos/a propos */
