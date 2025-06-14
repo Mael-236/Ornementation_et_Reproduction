@@ -174,13 +174,13 @@ img {
 
 .extend-btn {
   position: absolute;
+  width: 40px;
+  height: 40px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: linear-gradient(135deg, #C5B358 0%, #9b8a3d 100%);
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
   border-radius: 25px;
   cursor: pointer;
   opacity: 0;
@@ -188,16 +188,14 @@ img {
   box-shadow: 0 4px 15px rgba(197, 179, 88, 0.4);
   z-index: 2;
   align-items: center;
-  gap: 8px;
-  font-weight: bold;
 }
 
 .extend-btn img {
-  position: absolute;
+  object-fit: contain;
   width: 25px;
   height: 25px;
-  margin-top: -20px;
-  margin-left: 16px;
+  margin-top: 8px;
+  margin-left: 8px;
 }
 
 .image-items {
@@ -210,8 +208,16 @@ img {
 /* Effet hover sur desktop */
 @media (hover: hover) {
     
-    .gallery img:hover{
+    .gallery img:hover {
       box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6)
+    }
+
+    .extend-btn:hover {
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .extend-btn img:hover {
+      box-shadow: none;
     }
 
     .image-items:hover .extend-btn {
@@ -323,7 +329,8 @@ footer p {
       box-shadow: 6px 8px 12px rgba(0, 0, 0, 0.6);
       padding: 16px;
       position: absolute;
-      top: 100%;
+      top: 110%;
+      right: 3%;
       z-index: 10;
   }
 

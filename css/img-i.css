@@ -1,0 +1,41 @@
+body {
+    background-color: white;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.img-hall {
+    position: flex;
+    align-items: center;
+}
+
+.main-img {
+    width: 65rem;
+    gap: 4rem;
+}
+
+.list-img img {
+    width: 450px;
+    justify-content: space-evenly;
+    display: grid;
+}
+
+.back-btn {
+    background: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 110rem;
+}
+
+.back-btn:hover {
+    background: #C5B358;
+}
