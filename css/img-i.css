@@ -5,22 +5,22 @@ body {
 h1 {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.img-hall {
-    position: flex;
-    align-items: center;
+#detail-page {
+    margin-left: 2rem;
+}
+
+#detail-image p {
+    justify-content: center;
 }
 
 .main-img {
     width: 65rem;
     gap: 4rem;
-}
-
-.list-img img {
-    width: 450px;
-    justify-content: space-evenly;
-    display: grid;
+    margin-left: 25rem;
+    border-radius: 6px;
 }
 
 .back-btn {
@@ -33,9 +33,28 @@ h1 {
     text-decoration: none;
     display: inline-block;
     margin-bottom: 20px;
-    margin-left: 110rem;
+    margin-left: 80rem;
 }
 
 .back-btn:hover {
     background: #C5B358;
+}
+
+.thumbnails-container {
+    margin-left: 15rem;
+}
+
+.thumbnails-container img {
+    width: 20rem;
+    height: 14rem;
+    border-radius: 8px;
+    margin-right: 5px;
+}
+
+.thumbnails-container img:active {
+    opacity: 0.5;
+}
+
+.prev-btn {
+    margin-left: 5rem;
 }

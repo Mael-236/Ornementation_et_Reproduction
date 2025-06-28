@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ornementation et Reproduction</title>
+        <link rel="stylesheet" href="css/img-i.css">
+    </head>
+    <body>
+        <div id="detail-page">
+            <a href="index.html" class="back-btn">Retour</a>
+            <h1 id="gallery-title">Galerie</h1>
+            
+            <div class="slider-container">
+                <div class="image-info">
+                    <p id="image-counter">1 / 1</p>
+                </div>
+                <div class="main-image-container">
+                    <img id="main-image" class="main-img" src="" alt="Image principale">
+                </div>
+                
+                <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
+                <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
+            </div>
+            
+            <div class="thumbnails-container">
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+            
+            
+        </div>
+    <script src="js/image-data.js"></script>
+    <script>
+        let currentImages = [];
+        let currentIndex = 0;
+
+        // Get image URL from the query string
+        const params = new URLSearchParams(window.location.search);
+        const imgUrl = params.get('img');
+
+        function initializeGallery() {
+            if (!imgUrl) {
+                document.getElementById('main-image').src = '';
+                document.getElementById('main-image').alt = 'Aucune image fournie';
+                return;
+            }
+
+            // Get image data
+            const imageInfo = getImageData(imgUrl);
+            
+            if (imageInfo) {
+                currentImages = imageInfo.images;
+                document.getElementById('gallery-title').textContent = imageInfo.title;
+                
+                // Find the index of the clicked image
+                currentIndex = currentImages.findIndex(img => img === imgUrl);
+                if (currentIndex === -1) currentIndex = 0;
+            } else {
+                // Fallback: just show the single image
+                currentImages = [imgUrl];
+                currentIndex = 0;
+                document.getElementById('gallery-title').textContent = 'Réalisation';
+            }
+
+            displayCurrentImage();
+            createThumbnails();
+        }
+
+        function displayCurrentImage() {
+            if (currentImages.length === 0) return;
+            
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = currentImages[currentIndex];
+            mainImage.alt = `Image ${currentIndex + 1}`;
+            
+            // Update counter
+            document.getElementById('image-counter').textContent = 
+                `${currentIndex + 1} / ${currentImages.length}`;
+            
+            // Update active thumbnail
+            updateActiveThumbnail();
+        }
+
+        function createThumbnails() {
+            const thumbnailsContainer = document.getElementById('thumbnails');
+            thumbnailsContainer.innerHTML = '';
+            
+            if (currentImages.length <= 1) {
+                thumbnailsContainer.style.display = 'none';
+                return;
+            }
+            
+            currentImages.forEach((imgSrc, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = imgSrc;
+                thumbnail.className = 'thumbnail';
+                thumbnail.alt = `Miniature ${index + 1}`;
+                thumbnail.addEventListener('click', () => {
+                    currentIndex = index;
+                    displayCurrentImage();
+                });
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+
+        function updateActiveThumbnail() {
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function nextImage() {
+            if (currentImages.length <= 1) return;
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            displayCurrentImage();
+        }
+
+        function prevImage() {
+            if (currentImages.length <= 1) return;
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            displayCurrentImage();
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', nextImage);
+        document.getElementById('prevBtn').addEventListener('click', prevImage);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') window.location.href = 'index.html';
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeGallery);
+    </script>
+    </body>
+</html>

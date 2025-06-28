@@ -141,6 +141,7 @@ img {
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 60px;
 }
 
 /* realisations */
@@ -292,6 +293,12 @@ img {
   justify-content: center;
 }
 
+.formulaire form {
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(#C5B358 80%,#9b8a3d);
+  border-radius: 8px;
+}
+
 #h1-contact {
   margin: 25px;
   font-size: 65px;
@@ -301,19 +308,24 @@ img {
 }
 
 .form-group {
-  justify-content: space-evenly;
+  display: flex;
+}
+
+.form-group textarea {
+  width: 30vh;
+  height: 10vh;
+  margin-left: 60px;
 }
 
 footer {
-  display: flex;
+  position: relative;
   background-image: linear-gradient(180deg, white 90%, #C5B358 10%);
 }
 
 footer p {
-  justify-content: space-evenly;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  font-size: 16px;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  font-size: 12px;
 }
 
 .menu-wrapper {
